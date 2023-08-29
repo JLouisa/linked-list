@@ -43,7 +43,17 @@ function printLinkedList(head) {
   }
 }
 
-printLinkedList(a);
+function printLinkedListRec(head) {
+  if (head === null) {
+    return;
+  } else {
+    console.log(head.value);
+    return printLinkedListRec(head.nextNode);
+  }
+}
+
+// printLinkedList(a);
+printLinkedListRec(a);
 
 //? +++++++++++++++++++++++++++++++
 
