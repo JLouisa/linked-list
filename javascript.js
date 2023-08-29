@@ -11,49 +11,49 @@
 
 //* Node Class
 class NodeClass {
-  constructor(value) {
+  constructor(value, nextNode = null) {
     this.value = value;
-    this.nextNode = null;
+    this.nextNode = nextNode;
   }
 }
 
-//? +++++++++++++++++++++++++++++++
-//Manual creation
-const a = new NodeClass("Adam");
-const c = new NodeClass("Cain");
-const e = new NodeClass("Eve");
-const n = new NodeClass("Noah");
+// //? +++++++++++++++++++++++++++++++
+// //Manual creation
+// const a = new NodeClass("Adam");
+// const c = new NodeClass("Cain");
+// const e = new NodeClass("Eve");
+// const n = new NodeClass("Noah");
 
-// Manual Pointing
-a.nextNode = c;
-c.nextNode = e;
-e.nextNode = n;
-//Manually print
-// console.log(a);
-// console.log(c);
-// console.log(e);
-// console.log(n);
+// // Manual Pointing
+// a.nextNode = c;
+// c.nextNode = e;
+// e.nextNode = n;
+// //Manually print
+// // console.log(a);
+// // console.log(c);
+// // console.log(e);
+// // console.log(n);
 
-//Automatically print
-function printLinkedList(head) {
-  let current = head;
-  while (current !== null) {
-    console.log(current.value);
-    current = current.nextNode;
-  }
-}
+// //Automatically print
+// function printLinkedList(head) {
+//   let current = head;
+//   while (current !== null) {
+//     console.log(current.value);
+//     current = current.nextNode;
+//   }
+// }
 
-function printLinkedListRec(head) {
-  if (head === null) {
-    return;
-  } else {
-    console.log(head.value);
-    return printLinkedListRec(head.nextNode);
-  }
-}
+// function printLinkedListRec(head) {
+//   if (head === null) {
+//     return;
+//   } else {
+//     console.log(head.value);
+//     return printLinkedListRec(head.nextNode);
+//   }
+// }
 
-// printLinkedList(a);
-printLinkedListRec(a);
+// // printLinkedList(a);
+// printLinkedListRec(a);
 
 //? +++++++++++++++++++++++++++++++
 
@@ -61,24 +61,24 @@ printLinkedListRec(a);
 //* Class LinkedList
 class Linkedlist {
   constructor() {
-    this.name = null;
-    this.nextNode = null;
+    this.value = "Head";
+    this.head = null;
   }
-  //   append(data) {
-  //     if (this.nextNode === null) {
-  //       const node = new NodeClass(data, this.nextNode);
-  //       this.data = this.name;
-  //       this.nextNode = node;
-  //       return node;
-  //     } else if (this.nextNode !== null) {
-  //       return this.append(this.nextNode.data);
-  //     }
-  //   }
-  //   prepand(node) {
-  //     if (node.nextNode !== null) {
-  //       node.name = node.nextNode;
-  //     }
-  //     this.prepand(node.name);
+  prepend(data) {
+    this.head = new NodeClass(data, this.nextNode);
+  }
+  append(data) {
+    let node = new NodeClass(data, this.nextNode);
+    if (this.head === null) {
+      this.head = node;
+    } else {
+      let current = this.head;
+      while (current.nextNode !== null) {
+        current = current.nextNode;
+      }
+      current.nextNode = node;
+    }
+  }
   //   }
   //   size(node) {
   //     let count = 0;
@@ -139,11 +139,13 @@ class Linkedlist {
   //     } else {
   //       return;
   //     }
-  //   }
+  // }
 }
 
 // Todo =======================================
-// const myLinkedList = new Linkedlist();
-// myLinkedList.append("Adam");
-// myLinkedList.append("Eve");
+const myLinkedList = new Linkedlist();
+myLinkedList.append("myAdam");
+myLinkedList.prepend("myEve");
+myLinkedList.append("Cain");
+myLinkedList.append("Noah");
 // Todo =======================================
