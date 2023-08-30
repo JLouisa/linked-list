@@ -62,90 +62,104 @@ class NodeClass {
 class Linkedlist {
   constructor() {
     this.value = "Head";
-    this.head = null;
+    this.thehead = null;
   }
   prepend(data) {
-    this.head = new NodeClass(data, this.nextNode);
+    this.thehead = new NodeClass(data, this.nextNode);
   }
   append(data) {
     let node = new NodeClass(data, this.nextNode);
-    if (this.head === null) {
-      this.head = node;
+    if (this.thehead === null) {
+      this.thehead = node;
     } else {
-      let current = this.head;
+      let current = this.thehead;
       while (current.nextNode !== null) {
         current = current.nextNode;
       }
       current.nextNode = node;
     }
   }
-  //   }
-  //   size(node) {
-  //     let count = 0;
-  //     if (node.nextNode !== null) {
-  //       count++;
-  //     }
-  //     if (node.nextNode === null) {
-  //       return count;
-  //     }
-  //     this.size(node.nextNode);
-  //   }
-  //   head(node) {
-  //     if (node.name === "Head") {
-  //       return node.name;
-  //     }
-  //   }
-  //   tail(node) {
-  //     if (this.node.nextNode === null) {
-  //       return this.node.name;
-  //     }
-  //     this.tail(node.nextNode);
-  //   }
-  //   at(index) {
-  //     let i = 0;
-  //     if (i === index) {
-  //       return node;
-  //     } else {
-  //       node.nextNode;
-  //       i++;
-  //     }
-  //   }
-  //   pop(node) {
-  //     if (node.nextNode.node.nextNode === null) {
-  //       node.nextNode = null;
-  //     }
-  //     return pop(node.nextNode);
-  //   }
-  //   contains(name) {
-  //     if (node.name === name) {
-  //       return true;
-  //     }
-  //     if (node.next === null) {
-  //       return false;
-  //     }
-  //     return this.contains(node.next.name);
-  //   }
-  //   find(name) {
-  //     let ii = 0;
-  //     if (node.next === name) {
-  //       return ii;
-  //     }
-  //     ii++;
-  //     return this.find(node.next.name);
-  //   }
-  //   toString() {
-  //     if (node.next !== null) {
-  //       JSON.stringify(node);
-  //     } else {
-  //       return;
-  //     }
-  // }
+  size() {
+    let count = 0;
+    let current = this.thehead;
+    while (current !== null) {
+      current = current.nextNode;
+      count++;
+    }
+    return count;
+  }
+  head() {
+    return this.thehead.nextNode;
+  }
+  tail() {
+    let current = this.thehead;
+    while (current.nextNode !== null) {
+      current = current.nextNode;
+    }
+    return current;
+  }
+  at(index) {
+    let count = 0;
+    let current = this.thehead;
+    while (count !== index) {
+      current = current.nextNode;
+      count++;
+    }
+    return current;
+  }
+  pop() {
+    let node;
+    let current = this.thehead;
+    if (this.thehead.nextNode === null) {
+      node = current.nextNode;
+      this.thehead.nextNode = null;
+      return `${node.value} removed`;
+    } else {
+      while (current.nextNode.nextNode !== null) {
+        current = current.nextNode;
+      }
+      node = current.nextNode;
+      current.nextNode = null;
+      return `${node.value} removed`;
+    }
+  }
+  contains(name) {
+    let found = false;
+    let current = this.thehead;
+    while (current !== null) {
+      if (current.value === name) {
+        found = true;
+        break;
+      }
+      current = current.nextNode;
+    }
+    return found;
+  }
+  find(name) {
+    let count = 0;
+    let current = this.thehead;
+    while (current !== null) {
+      if (current.value === name) {
+        return `Index: ${count}`;
+      }
+      current = current.nextNode;
+      count++;
+    }
+    return null;
+  }
+  toString() {
+    let current = this.thehead;
+    while (current !== null) {
+      console.log(`${current.value} -> `);
+      current = current.nextNode;
+    }
+  }
 }
 
 // Todo =======================================
 const myLinkedList = new Linkedlist();
-myLinkedList.append("myAdam");
-myLinkedList.prepend("myEve");
+myLinkedList.append("Adam");
+myLinkedList.append("Eve");
 myLinkedList.append("Cain");
 myLinkedList.append("Noah");
 // Todo =======================================
